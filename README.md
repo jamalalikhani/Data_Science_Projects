@@ -17,6 +17,8 @@ please contact me of any questions/comments via: jamal.alikhani@gmail.com
 ## TensorFlow Architecture for Neural Network (general perspective)
 '''x = tf.placeholder(tf.float32, [None, feature_size])
  y_true = tf.placeholder(tf.float32, [None, class_size])'''
+ 
+ '<nnn>'
     
 def foo():
 	x = tf.placeholder(tf.float32, [None, feature_size])
