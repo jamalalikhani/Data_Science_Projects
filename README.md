@@ -22,29 +22,29 @@ def foo():
 	x = tf.placeholder(tf.float32, [None, feature_size])
   
 1. **TensorFlow Graph Construction**
-  1. Placeholder Variables:
+  1. Placeholder Variables:  
   '
   x = tf.placeholder(tf.float32, [None, feature_size])
   y_true = tf.placeholder(tf.float32, [None, class_size]) 
   '
   
-  2. Model Variables:
+  2. Model Variables:  
   '
   weights = tf.Variable(tf.zeros([feature_size, class_size]))
   biases = tf.Variable(tf.zeros([class_size]))
   '
   
-  3. Model (logistic regression for example):
+  3. Model (logistic regression for example):  
   '
   logits = tf.matmul(x, weights) + biases
   y_pred = tf.nn.softmax(logits)
   '
   
-  4. Cost funtion:
+  4. Cost funtion:  
   'cost_entropy = tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=y_true_onehot)
   cost = tf.reduce_mean(cost_entropy)'
   
-  5. Optimizer algorithm:
+  5. Optimizer algorithm:  
   '''
   Optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.1).minimize(cost)
   '''
