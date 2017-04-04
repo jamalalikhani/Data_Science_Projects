@@ -17,28 +17,26 @@ please contact me of any questions/comments via: jamal.alikhani@gmail.com
 ## TensorFlow Architecture for Neural Network (general perspective)
 1. **TensorFlow Graph Construction**
   1. Placeholder Variables:
-  '''
+  '
   x = tf.placeholder(tf.float32, [None, feature_size])
   y_true = tf.placeholder(tf.float32, [None, class_size]) 
-  '''
+  '
   
   2. Model Variables:
-  '''
+  '
   weights = tf.Variable(tf.zeros([feature_size, class_size]))
   biases = tf.Variable(tf.zeros([class_size]))
-  '''
+  '
   
   3. Model (logistic regression for example):
-  '''
+  '
   logits = tf.matmul(x, weights) + biases
   y_pred = tf.nn.softmax(logits)
-  '''
+  '
   
   4. Cost funtion:
-  '''
-  cost_entropy = tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=y_true_onehot)
-  cost = tf.reduce_mean(cost_entropy)
-  '''
+  'cost_entropy = tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=y_true_onehot)
+  cost = tf.reduce_mean(cost_entropy)'
   
   5. Optimizer algorithm:
   '''
