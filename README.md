@@ -19,8 +19,8 @@ please contact me of any questions/comments via: jamal.alikhani@gmail.com
 1. **TensorFlow Graph Construction**
    1. Placeholder Variables:  
    ```
-    x = tf.placeholder(tf.float32, [None, feature_size])
-    y_true = tf.placeholder(tf.float32, [None, class_size]) 
+   x = tf.placeholder(tf.float32, [None, feature_size])
+   y_true = tf.placeholder(tf.float32, [None, class_size]) 
    ```  
    2. Model Variables:  
   ```
