@@ -25,20 +25,6 @@ mnist = input_data.read_data_sets("data/MNIST/", one_hot=True)
 
 mnist.test.cls = np.array([lable.argmax() for lable in mnist.test.labels])
 
-def plot_mnist_images(images, cls, img_name="image_out"):
-	cls = np.array(cls)
-	fig, ax = plt.subplot(3,3)
-	for i in range(9):
-		img = np.array(images[i]).reshape((28,28))
-		#ax = plt.subplot(3,3,i+1)
-		ax[i+1].imshow(img,cmap='binary')
-		ax.set_title("C = {0}".format(cls[i]))
-	plt.savefig(img_name+'.png')
-	plt.show()
-
-plot_mnist_images(mnist.test.images[10:19],mnist.test.cls[10:19],img_name="mnist_sample")
-
-a = j
 # 10 classes, 0 to 9 
 '''
 one_hot=True
@@ -48,9 +34,9 @@ one_hot=True
 3 = [0 0 0 1 0 0 0 0 0 0 0]
 
 '''
-n_nodes_hl1 = 50
-n_nodes_hl2 = 50
-n_nodes_hl3 = 50
+n_nodes_hl1 = 784
+n_nodes_hl2 = 128
+n_nodes_hl3 = 128
 
 n_classes = 10
 batch_size = 100
@@ -88,7 +74,7 @@ def train_neural_network(x):
 	prediction = neural_network_model(x)
 	cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(prediction, y))
 	optimizer = tf.train.AdamOptimizer().minimize(cost)
-	hm_epochs = 10
+	hm_epochs = 100
 
 	with tf.Session() as sess:
 		sess.run(tf.initialize_all_variables())
