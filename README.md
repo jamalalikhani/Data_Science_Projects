@@ -5,6 +5,8 @@ In this attempt, I have applied TensorFlow (puthon 3.5 on Ubuntu) to construct t
 3. Recurrent Neural Network (RNN) with 1 NN layer inside a LSTM cell
 4. Convolutional Neural Network (CNN) with 2 Convolutional/pooling layers and 1 fully connected layer
 
+*mnist* are a set handwritten images of handwritten English numbers `0 to 9` in gray-scale of `28*28` resolusionin like:
+
 
 **Refrences:**
 most of the materials are taken from:
@@ -80,6 +82,12 @@ please contact me of any questions/comments via: jamal.alikhani@gmail.com
    ```
       sess.close()
    ```
+   
+## Results
+#### Linear Regression Model:
+     
+
+
 
 
 
