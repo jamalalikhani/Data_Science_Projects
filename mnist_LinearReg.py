@@ -32,7 +32,7 @@ def plot_mnist_images(images, cls_true, cls_pred=None, img_name="image_out"):
 	plt.show()
 	
 
-#plot_mnist_images(mnist.test.images[10:19],mnist.test.cls[10:19])
+plot_mnist_images(mnist.test.images[10:19],mnist.test.cls[10:19], img_name="mnist_sample")
 
 def plot_weights_images(w,ttl=None, img_name="weight_out"):
 	w = np.array(w)
@@ -69,7 +69,7 @@ def plot_confusion_matrix(cls_true, cls_pred):
     plt.savefig("mnist_LinearReg_confusion_matrix"+'.png')  
     plt.show()
 	
-# ............ TensorFlow Graph Constructio ........................
+# ............ TensorFlow Graph Construction ........................
 # Placeholder Variables:
 feature_size = 28*28
 class_size = 10
