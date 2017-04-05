@@ -15,36 +15,13 @@ most of the materials are taken from:
 please contact me of any questions/comments via: jamal.alikhani@gmail.com
 
 ## TensorFlow Architecture for Neural Network (general perspective)
-
-1. First ordered list item
-2. Another item
-  * Unordered sub-list. 
-1. Actual numbers don't matter, just that it's a number
-  1. Ordered sub-list
-4. And another item.
-
-   You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).
-
-
-
-* Unordered list can use asterisks
-- Or minuses
-+ Or pluses
-
-'''x = tf.placeholder(tf.float32, [None, feature_size])
- y_true = tf.placeholder(tf.float32, [None, class_size])'''
- 
- '<nnn>'
-    
-def foo():
-	x = tf.placeholder(tf.float32, [None, feature_size])
   
 1. **TensorFlow Graph Construction**
   1. Placeholder Variables:  
-  '
+  ```
   x = tf.placeholder(tf.float32, [None, feature_size])
   y_true = tf.placeholder(tf.float32, [None, class_size]) 
-  '
+  ```
   
   2. Model Variables:  
   '
