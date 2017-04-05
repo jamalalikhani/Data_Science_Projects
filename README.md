@@ -16,7 +16,7 @@ most of the materials are taken from:
 * [Magnus Pedersen's tutorial](https://github.com/Hvass-Labs/TensorFlow-Tutorials)
 * [sentdex's tutorial channel](https://www.youtube.com/watch?v=OGxgnH8y2NM&list=PLQVvvaa0QuDfKTOs3Keq_kaG2P55YRn5v)
 
-please contact me of any questions/comments via: jamal.alikhani@gmail.com
+You are welcome to modify these codes and use them in your own projects. Please contact me if you have any questions/comments via: jamal.alikhani@gmail.com.
 
 ## TensorFlow Architecture for Neural Network (general perspective)
   
@@ -107,8 +107,8 @@ The matrix confusion is also showing below:
  [  11    8    4   10   34   16    1   24    4  897]]
 
 ```
-
 Confusionmatrix in 
+
 ![mnist_linearreg_confusion_matrix](https://cloud.githubusercontent.com/assets/22183834/24684626/2f421872-195c-11e7-8c83-099154f83e2b.png)
 
 The acuracy of Linear Regression is `90.1%`. Here is some of the wrong predictions of the Linear Regression:
@@ -162,9 +162,12 @@ def recurrent_neural_network_model(x):
 	return output
 ```
 
+In the `28*28` image, each row of image considered as one chunck size feeded to LSTM cell. 
+Accuracy obove 98% is achived. The accuracy was lower than CNN, but the simulation was faster. 
+
 #### CNN Model:
 
-2D convolution layer can be constructed like:
+2D convolution layer is constructed as:
 ```
 # Convolutional layer: a 4D tensor
 def conv_layer(input,  #prev layer
@@ -198,15 +201,21 @@ def conv_layer(input,  #prev layer
 ```
 
 The weights of 16 `5*5` filters for first layer: 
+![mnist_cnn_layer1_filter_weight](https://cloud.githubusercontent.com/assets/22183834/24685431/4d8a47ae-1962-11e7-9a6b-acd2354e1401.png)
 
 One output example of first layer (after `2*2` pooling):
-
-
-The weights of 36 `5*5` filters of second layer:
+![mnist_cnn_layer1out_image](https://cloud.githubusercontent.com/assets/22183834/24685430/4b2c8044-1962-11e7-95ab-256bc70e89b4.png)
 
 One output example of second layer (after `2*2` pooling):
+![mnist_cnn_layer2out_image](https://cloud.githubusercontent.com/assets/22183834/24685436/53d01b8e-1962-11e7-9167-b5127f70b92d.png)
 
-For a better demonstration of CNN please se the [Magnus Pedersen's handout](https://github.com/Hvass-Labs/TensorFlow-Tutorials)
+CNN reaches to an accuracy of 99%. 
+CNN had the highest accuracy among the four other methods in the xpemces of longer runtime and limitation in memory usage for batch sizes greather 256 (for my laptop with 8 GB RAM).
+
+For a better demonstration of CNN please se the [Magnus Pedersen's handout](https://github.com/Hvass-Labs/TensorFlow-Tutorials).
+
+
+
 
 
 
