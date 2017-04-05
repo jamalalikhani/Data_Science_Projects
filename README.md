@@ -5,8 +5,10 @@ In this attempt, I have applied TensorFlow (puthon 3.5 on Ubuntu) to construct t
 3. Recurrent Neural Network (RNN) with 1 NN layer inside a LSTM cell
 4. Convolutional Neural Network (CNN) with 2 Convolutional/pooling layers and 1 fully connected layer
 
-*mnist* are a set handwritten images of handwritten English numbers `0 to 9` in gray-scale of `28*28` resolusionin like:
+*mnist* are a set handwritten images of handwritten English numbers `0 to 9` in gray-scale of `28*28` resolution like:
+![mnist_sample](https://cloud.githubusercontent.com/assets/22183834/24684604/162534be-195c-11e7-9493-b20f1e764728.png)
 
+The goal was to design a NN with different approaches to train by using 60,000 training data set. 
 
 **Refrences:**
 most of the materials are taken from:
@@ -85,7 +87,127 @@ please contact me of any questions/comments via: jamal.alikhani@gmail.com
    
 ## Results
 #### Linear Regression Model:
-     
+
+A fully connected layer of size `28*28=784` was considered that each neuron was mapped to a particuar pixcel in the image. After training, the weights are illustrated in the image form:
+![mnist_linearreg_weights](https://cloud.githubusercontent.com/assets/22183834/24684621/2bc602c6-195c-11e7-8687-7d89e335aecd.png)  
+
+where redish color shows positive weights and blueish shows negetive weights. Interestigly (and expectedly) the weights of each number illustrate the same value on the graph. This is the most advantage of using Linear Regression method that it's weights are are interpretable. 
+
+The matrix confusion is also showing below:
+```
+ [[ 957    0    2    3    0    8    7    1    2    0]
+ [   0 1112    2    3    1    2    4    0   11    0]
+ [  13   13  873   23   14    2   20   23   40   11]
+ [   5    2   17  889    1   44    6   15   18   13]
+ [   1    6    4    0  889    1   13    1    8   59]
+ [  10    5    1   31   12  775   17    7   24   10]
+ [  17    3    4    2    8   22  897    1    4    0]
+ [   3   20   26    4   11    0    0  917    4   43]
+ [   9   12   11   32    8   44   14   17  810   17]
+ [  11    8    4   10   34   16    1   24    4  897]]
+
+```
+
+Confusionmatrix in 
+![mnist_linearreg_confusion_matrix](https://cloud.githubusercontent.com/assets/22183834/24684626/2f421872-195c-11e7-8c83-099154f83e2b.png)
+
+The acuracy of Linear Regression is `90.1%`. Here is some of the wrong predictions of the Linear Regression:
+![mnist_linearreg_wrongpred](https://cloud.githubusercontent.com/assets/22183834/24684617/297d96fa-195c-11e7-8395-7e2cf936f32b.png)
+
+#### MLP Model:
+The NN model is:
+```
+def neural_network_model(data):
+	# input_data * weights + biases
+	hidden_1_layer = {'weights':tf.Variable(tf.random_normal([784, n_nodes_hl1])),
+	                  'biases':tf.Variable(tf.random_normal([n_nodes_hl1]))}
+	hidden_2_layer = {'weights':tf.Variable(tf.random_normal([n_nodes_hl1, n_nodes_hl2])),
+	                  'biases':tf.Variable(tf.random_normal([n_nodes_hl2]))}
+	hidden_3_layer = {'weights':tf.Variable(tf.random_normal([n_nodes_hl2, n_nodes_hl3])),
+	                  'biases':tf.Variable(tf.random_normal([n_nodes_hl3]))}
+	output_layer = {'weights':tf.Variable(tf.random_normal([n_nodes_hl3, n_classes])),
+	                  'biases':tf.Variable(tf.random_normal([n_classes]))}                                                      
+
+	l1 = tf.add(tf.matmul(data, hidden_1_layer['weights']), hidden_1_layer['biases'])
+	l1 = tf.nn.relu(l1)  # activation function
+
+
+	l2 = tf.add(tf.matmul(l1, hidden_2_layer['weights']), hidden_2_layer['biases'])
+	l2 = tf.nn.relu(l2)  # activation function
+
+
+	l3 = tf.add(tf.matmul(l2, hidden_3_layer['weights']), hidden_3_layer['biases'])
+	l3 = tf.nn.relu(l3)  # activation function
+
+	output = tf.matmul(l3, output_layer['weights']) + output_layer['biases']
+	return output
+```
+weights in MLP are not interpretable and I didn't show them here. The accuracy of MLP can be vary by altering the number of layers and the number of neurons at each layer (known as hyper parameter). 
+
+#### RNN Model:
+The RNN model with LSTM cell:
+```
+def recurrent_neural_network_model(x):
+	
+	layer = {'weights':tf.Variable(tf.random_normal([rnn_size, n_classes])),
+	                  'biases':tf.Variable(tf.random_normal([n_classes]))}
+	x = tf.transpose(x, [1,0,2])
+	x = tf.reshape(x, [-1, chunk_size])
+	x = tf.split(0, n_chunks, x)
+
+	lstm_cell = rnn_cell.BasicLSTMCell(rnn_size)
+	outputs, states = rnn.rnn(lstm_cell, x, dtype=tf.float32)
+
+	output = tf.matmul(outputs[-1], layer['weights']) + layer['biases']
+	return output
+```
+
+#### CNN Model:
+
+2D convolution layer can be constructed like:
+```
+# Convolutional layer: a 4D tensor
+def conv_layer(input,  #prev layer
+	num_input_channels,  # num of channels in prev layer
+	filter_size,
+	num_filters,
+	use_max_pooling=True): # use 2x2 max-pooling
+
+	shape = [filter_size, filter_size, num_input_channels, num_filters]
+
+	weights = new_weights(shape=shape)
+	biases = new_biases(length=num_filters)
+
+	layer = tf.nn.conv2d(input=input,
+		filter=weights,
+		strides=[1,1,1,1],  #strides=[img-num,x-axis moving, y-axis moving, input-channel]
+		padding='SAME')
+
+	layer += biases
+
+	if use_max_pooling:  # max-pooling occures after convolution
+		layer = tf.nn.max_pool(value=layer,
+			ksize=[1,2,2,1],  #max-pool size I think!
+			strides=[1,2,2,1],
+			padding='SAME')
+
+	# rectified linear unit (ReLU): x = max(0,x)
+	layer = tf.nn.relu(layer)
+
+	return layer, weights
+```
+
+The weights of 16 `5*5` filters for first layer: 
+
+One output example of first layer (after `2*2` pooling):
+
+
+The weights of 36 `5*5` filters of second layer:
+
+One output example of second layer (after `2*2` pooling):
+
+For a better demonstration of CNN please se the [Magnus Pedersen's handout](https://github.com/Hvass-Labs/TensorFlow-Tutorials)
+
 
 
 
