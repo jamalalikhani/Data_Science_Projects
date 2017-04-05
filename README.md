@@ -5,8 +5,7 @@ In this attempt, I have applied TensorFlow (puthon 3.5 on Ubuntu) to construct t
 3. Recurrent Neural Network (RNN) with 1 NN layer inside a LSTM cell
 4. Convolutional Neural Network (CNN) with 2 Convolutional/pooling layers and 1 fully connected layer
 
-*mnist* are a set handwritten images of handwritten English numbers `0 to 9` in gray-scale of `28*28` resolution like:
-![mnist_sample](https://cloud.githubusercontent.com/assets/22183834/24684604/162534be-195c-11e7-9493-b20f1e764728.png)
+*mnist* are a set handwritten images of handwritten English numbers `0 to 9` in gray-scale of `28*28` resolution like:![mnist_sample](https://cloud.githubusercontent.com/assets/22183834/24684604/162534be-195c-11e7-9493-b20f1e764728.png)
 
 The goal was to design a NN with different approaches to train by using 60,000 training data set. 
 
@@ -107,8 +106,6 @@ The matrix confusion is also showing below:
  [  11    8    4   10   34   16    1   24    4  897]]
 
 ```
-Confusionmatrix in 
-
 ![mnist_linearreg_confusion_matrix](https://cloud.githubusercontent.com/assets/22183834/24684626/2f421872-195c-11e7-8c83-099154f83e2b.png)
 
 The acuracy of Linear Regression is `90.1%`. Here is some of the wrong predictions of the Linear Regression:
@@ -204,15 +201,16 @@ The weights of 16 `5*5` filters for first layer:
 ![mnist_cnn_layer1_filter_weight](https://cloud.githubusercontent.com/assets/22183834/24685431/4d8a47ae-1962-11e7-9a6b-acd2354e1401.png)
 
 One output example of first layer (after `2*2` pooling):
-![mnist_cnn_layer1out_image](https://cloud.githubusercontent.com/assets/22183834/24685430/4b2c8044-1962-11e7-95ab-256bc70e89b4.png)
+![mnist_cnn_layer1out_image](https://cloud.githubusercontent.com/assets/22183834/24686068/4b2721b8-1966-11e7-8258-b717c698e83f.png)
 
 One output example of second layer (after `2*2` pooling):
-![mnist_cnn_layer2out_image](https://cloud.githubusercontent.com/assets/22183834/24685436/53d01b8e-1962-11e7-9167-b5127f70b92d.png)
+![mnist_cnn_layer2out_image](https://cloud.githubusercontent.com/assets/22183834/24686069/4c6ff13a-1966-11e7-9366-93a23c23a2a2.png)
 
 CNN reaches to an accuracy of 99%. 
 CNN had the highest accuracy among the four other methods in the xpemces of longer runtime and limitation in memory usage for batch sizes greather 256 (for my laptop with 8 GB RAM).
 
 For a better demonstration of CNN please se the [Magnus Pedersen's handout](https://github.com/Hvass-Labs/TensorFlow-Tutorials).
+
 
 
 
