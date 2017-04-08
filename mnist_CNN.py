@@ -1,6 +1,6 @@
 '''
 implemented by Jamal Alikhani for learning purposes, Feb 2017
-keywords: Tensoreflow, CNN (2 conv layers + 1 fully connected), MNIST
+keywords: Tensoreflow, CNN (2 conv layers + 1 fully connected), MNIST dataset
 
 '''
 import numpy as np 
