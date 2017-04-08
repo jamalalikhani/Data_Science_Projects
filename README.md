@@ -209,7 +209,7 @@ One output example of second layer (after `2*2` pooling):
 CNN reaches to an accuracy of 99%. 
 CNN had the highest accuracy among the four other methods in the xpemces of longer runtime and limitation in memory usage for batch sizes greather 256 (for my laptop with 8 GB RAM).
 
-For a better demonstration of CNN please se the [Magnus Pedersen's handout](https://github.com/Hvass-Labs/TensorFlow-Tutorials).
+For a better demonstration of CNN please see the [Magnus Pedersen's handout](https://github.com/Hvass-Labs/TensorFlow-Tutorials).
 
 
 
