@@ -50,7 +50,7 @@ You are welcome to modify these codes and use them in your own projects. Please 
       accuracy = tf.reduce_mean(tf.cast(Correct_prediction, tf.float64))
    ```
 
-2. **Running The TF Graph**
+2. **Running the tf Graph**
    1. Open a session:
    ```
       sess = tf.Session()
