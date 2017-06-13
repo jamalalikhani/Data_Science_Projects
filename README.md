@@ -2,7 +2,7 @@
 In this attempt, I have applied TensorFlow (puthon 3.5 on Ubuntu) to construct the follwing four models:
 1. Linear Regression with 1 fully connected layer
 2. Multilayer Perceptron Model (MLP) with 3 fully connected layers
-3. Recurrent Neural Network (RNN) with 1 NN layer inside a LSTM cell
+3. Recurrent Neural Network (RNN) with 1 NN layer inside an LSTM cell
 4. Convolutional Neural Network (CNN) with 2 Convolutional/pooling layers and 1 fully connected layer
 
 *mnist* are a set handwritten images of handwritten English numbers `0 to 9` in gray-scale of `28*28` resolution like:![mnist_sample](https://cloud.githubusercontent.com/assets/22183834/24684604/162534be-195c-11e7-9493-b20f1e764728.png)
